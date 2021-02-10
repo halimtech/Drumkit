@@ -2,13 +2,14 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
         var buttonIn = this.innerHTML
         makeSound(buttonIn)
-
+        buttonAnimation(buttonIn)
     })
 
 }
 
 document.addEventListener("keydown", function (Event) {
     makeSound(Event.key)
+    buttonAnimation(Event.key)
 })
 
 function makeSound(key) {
@@ -45,4 +46,12 @@ function makeSound(key) {
         default:
             break;
     }
+}
+
+function buttonAnimation(key) {
+    var active = document.querySelector("." + key);
+    active.classList.add("pressed")
+    setTimeout(function () {
+        active.classList.remove("pressed")
+    }, 100)
 }
